@@ -1,0 +1,30 @@
+{
+  "name": "temis-node-test",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "mocha"
+  },
+  "dependencies": {
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^16.0.0",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "mocha": "^9.2.2",
+    "mongoose": "^6.3.0",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.2",
+    "time-stamp": "^2.2.0"
+  },
+  "main": "app.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
