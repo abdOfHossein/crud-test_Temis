@@ -7,6 +7,16 @@ router.post('/comment/creat', async (req, res) => {
 
     try {
         const { writer, text } = req.body;
+        if(!writer || !text){
+            res.json({
+                status: 'success',
+                result: {
+                    msg: 'writer and text must fill'
+                }
+
+            })
+
+        }
         const comment = await Comment.create({
             writer,
             text
@@ -23,11 +33,11 @@ router.post('/comment/creat', async (req, res) => {
             })
         }
 
-    } catch (err) {
+    } catch (error) {
         res.json({
             status: 'unsuccess',
             result: {
-                error
+                msg:error
             }
 
         })
@@ -42,6 +52,7 @@ router.get('/comment/read', async (req, res) => {
             res.json({
                 status: 'success',
                 result: {
+
                     article: 'comment read'
                 }
 
@@ -52,7 +63,7 @@ router.get('/comment/read', async (req, res) => {
         res.json({
             status: 'success',
             result: {
-                error
+                msg:error
             }
 
         })
@@ -62,8 +73,17 @@ router.get('/comment/read', async (req, res) => {
 
 router.put('/comment/update/:id', async (req, res) => {
     try {
-        const { writer, title, text } = req.body;
-        const comment = await Comment.findByIdAndUpdate(req.params.id, { writer, title, text });
+        const { writer, title} = req.body;
+        if(!writer || !title){
+            res.json({
+                status: 'success',
+                result: {
+                    msg: 'for update comment you must fill writer and update'
+                }
+
+            });
+        }
+        const comment = await Comment.findByIdAndUpdate(req.params.id, { writer, title });
         if (comment) {
             res.json({
                 status: 'success',
@@ -78,7 +98,7 @@ router.put('/comment/update/:id', async (req, res) => {
         res.json({
             status: 'success',
             result: {
-                error
+                msg:error
             }
 
         })
@@ -102,7 +122,7 @@ router.delete('/comment/delete/:id', async (req, res) => {
         res.json({
             status: 'success',
             result: {
-                error
+                msg:error
             }
         })
     }

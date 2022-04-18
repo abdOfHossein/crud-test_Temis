@@ -7,6 +7,17 @@ router.post('/user/creat', async (req, res) => {
 
     try {
         const { firstName, lastName, userName, password } = req.body;
+        if (!firstName || !lastName || !userName || !password) {
+
+            res.json({
+                status: 'success',
+                result: {
+                    msg: 'you must  enter firstName, lastName, userName, password '
+                }
+
+            })
+
+        }
         const user = await User.create({
             firstName,
             lastName,
@@ -24,11 +35,11 @@ router.post('/user/creat', async (req, res) => {
             })
         }
 
-    } catch (err) {
+    } catch (error) {
         res.json({
             status: 'unsuccess',
             result: {
-                error
+                msg: error
             }
 
         })
@@ -53,7 +64,7 @@ router.get('/user/read', async (req, res) => {
         res.json({
             status: 'success',
             result: {
-                error
+                msg: error
             }
         })
     }
@@ -63,6 +74,17 @@ router.get('/user/read', async (req, res) => {
 router.put('/user/update/:id', async (req, res) => {
     try {
         const { firstName, lastName, userName, password } = req.body;
+        if (!firstName || !lastName || !userName || !password) {
+
+            res.json({
+                status: 'success',
+                result: {
+                    msg: 'you must  enter firstName, lastName, userName, password '
+                }
+
+            })
+
+        }
         const user = await User.findByIdAndUpdate(req.params.id, { firstName, lastName, userName, password });
         if (user) {
             res.json({
@@ -77,7 +99,7 @@ router.put('/user/update/:id', async (req, res) => {
         res.json({
             status: 'success',
             result: {
-                error
+                msg: error
             }
         })
     }
@@ -99,7 +121,7 @@ router.delete('/user/delete/:id', async (req, res) => {
         res.json({
             status: 'success',
             result: {
-                error
+                msg: error
             }
         })
     }

@@ -7,6 +7,17 @@ router.post('/article/creat', async (req, res) => {
 
     try {
         const { writer, title } = req.body;
+        if(!writer || !title){
+            res.json({
+               
+                status: 'unsuccess',
+                result: {
+                    msg: 'artile must have writer and title',
+                }
+
+            })
+            return;
+        }
         const article = await Article.create({
             writer,
             title
@@ -22,11 +33,12 @@ router.post('/article/creat', async (req, res) => {
             })
         }
 
-    } catch (err) {
+    } catch (error) {
+        console.log(error);
         res.json({
             status: 'unsuccess',
             result: {
-                error
+                msg:error
             }
         })
     }
@@ -58,8 +70,19 @@ router.get('/article/read', async (req, res) => {
 
 router.put('/article/update/:id', async (req, res) => {
     try {
-        const { writer, title, text } = req.body;
-        const article = await Article.findByIdAndUpdate(req.params.id, { writer, title, text });
+        const { writer, title} = req.body;
+        if(!writer|| !title){
+            res.json({
+               
+                status: 'unsuccess',
+                result: {
+                    msg: 'for update artile must enter writer and title',
+                }
+
+            })
+            return;
+        }
+        const article = await Article.findByIdAndUpdate(req.params.id, { writer, title });
         if (article) {
             res.json({
                 status: 'success',
@@ -69,11 +92,11 @@ router.put('/article/update/:id', async (req, res) => {
             });
         }
     } catch (error) {
+        console.log(error);
         res.json({
-
-            status: 'success',
+            status: 'unsuccess',
             result: {
-                error
+                msg:error
             }
         })
     }

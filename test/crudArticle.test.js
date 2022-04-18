@@ -42,8 +42,8 @@ describe('crud article', done => {
     it('update article', done => {
         chai
             .request(app)
-            .put('/article/update/625c1e7177c3b8b5cf5099c5')
-            .send({writer:'ali',title:'mammals',text:'mammals are cute'})
+            .put('/article/update/625c28006a288887121eb674')
+            .send({writer:'ali',title:'mammals'})
             .end((err, res) => {
                 if(err){
                  return   console.log(err);
@@ -58,7 +58,7 @@ describe('crud article', done => {
     it('delete article', done => {
         chai
             .request(app)
-            .delete('/article/delete/625c1e7177c3b8b5cf5099c5')
+            .delete('/article/delete/625c2c445b4e1c99096ed0ae')
             .end((err, res) => {
                 if(err){
                  return   console.log(err);
